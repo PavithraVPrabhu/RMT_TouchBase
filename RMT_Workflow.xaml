@@ -1,0 +1,1609 @@
+<Activity mc:Ignorable="sap sap2010" x:Class="Tb_Workflow" xmlns="http://schemas.microsoft.com/netfx/2009/xaml/activities" xmlns:av="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" xmlns:p="http://schemas.uipath.com/workflow/activities/cv" xmlns:p1="http://schemas.uipath.com/workflow/activities/ocr" xmlns:sap="http://schemas.microsoft.com/netfx/2009/xaml/activities/presentation" xmlns:sap2010="http://schemas.microsoft.com/netfx/2010/xaml/activities/presentation" xmlns:scg="clr-namespace:System.Collections.Generic;assembly=System.Private.CoreLib" xmlns:sco="clr-namespace:System.Collections.ObjectModel;assembly=System.Private.CoreLib" xmlns:sd="clr-namespace:System.Drawing;assembly=System.Drawing.Common" xmlns:sd1="clr-namespace:System.Drawing;assembly=System.Drawing.Primitives" xmlns:uc="clr-namespace:UiPath.CV;assembly=UiPath.CV" xmlns:ui="http://schemas.uipath.com/workflow/activities" xmlns:uix="http://schemas.uipath.com/workflow/activities/uix" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <x:Members>
+    <x:Property Name="in_ProjectCodeItem" Type="InArgument(ui:QueueItem)" />
+    <x:Property Name="out_ProjectCode" Type="OutArgument(x:String)" />
+    <x:Property Name="out_Account" Type="OutArgument(x:String)" />
+    <x:Property Name="out_BusinessUnit" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ProjectName" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ProjectDu" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ProjectGroup1" Type="OutArgument(x:String)" />
+    <x:Property Name="out_StartDate" Type="OutArgument(x:String)" />
+    <x:Property Name="out_EndDate" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ProjectLocation" Type="OutArgument(x:String)" />
+    <x:Property Name="out_LegalEntity" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ProjectStatus" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ProjectManager" Type="OutArgument(x:String)" />
+    <x:Property Name="out_DeliveryManager" Type="OutArgument(x:String)" />
+    <x:Property Name="out_AccountManager" Type="OutArgument(x:String)" />
+    <x:Property Name="out_SalesPerson" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ProjectDomain" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ProjectType" Type="OutArgument(x:String)" />
+    <x:Property Name="out_Region" Type="OutArgument(x:String)" />
+    <x:Property Name="out_Currency" Type="OutArgument(x:String)" />
+    <x:Property Name="out_Group2" Type="OutArgument(x:String)" />
+    <x:Property Name="out_Group3" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ProjectCategory" Type="OutArgument(x:String)" />
+    <x:Property Name="out_ProjectBu" Type="OutArgument(x:String)" />
+  </x:Members>
+  <VisualBasic.Settings>
+    <x:Null />
+  </VisualBasic.Settings>
+  <sap2010:WorkflowViewState.IdRef>Tb_Workflow_1</sap2010:WorkflowViewState.IdRef>
+  <TextExpression.NamespacesForImplementation>
+    <sco:Collection x:TypeArguments="x:String">
+      <x:String>System.Activities</x:String>
+      <x:String>System.Activities.Statements</x:String>
+      <x:String>System.Activities.Expressions</x:String>
+      <x:String>System.Activities.Validation</x:String>
+      <x:String>System.Activities.XamlIntegration</x:String>
+      <x:String>Microsoft.VisualBasic</x:String>
+      <x:String>Microsoft.VisualBasic.Activities</x:String>
+      <x:String>System</x:String>
+      <x:String>System.Collections</x:String>
+      <x:String>System.Collections.Generic</x:String>
+      <x:String>System.Collections.ObjectModel</x:String>
+      <x:String>System.Data</x:String>
+      <x:String>System.Diagnostics</x:String>
+      <x:String>System.Drawing</x:String>
+      <x:String>System.IO</x:String>
+      <x:String>System.Linq</x:String>
+      <x:String>System.Net.Mail</x:String>
+      <x:String>System.Xml</x:String>
+      <x:String>System.Xml.Linq</x:String>
+      <x:String>System.Windows.Markup</x:String>
+      <x:String>UiPath.Core</x:String>
+      <x:String>UiPath.Core.Activities</x:String>
+      <x:String>GlobalVariablesNamespace</x:String>
+      <x:String>GlobalConstantsNamespace</x:String>
+      <x:String>UiPath.UIAutomationCore.Contracts</x:String>
+      <x:String>UiPath.Platform.SyncObjects</x:String>
+      <x:String>System.Reflection</x:String>
+      <x:String>System.Linq.Expressions</x:String>
+      <x:String>System.Runtime.Serialization</x:String>
+      <x:String>UiPath.UIAutomationNext.Enums</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities</x:String>
+      <x:String>UiPath.Shared.Activities</x:String>
+      <x:String>UiPath.Platform.ObjectLibrary</x:String>
+      <x:String>System.Security</x:String>
+      <x:String>System.ComponentModel</x:String>
+      <x:String>UiPath.UIAutomationNext.Activities.Models</x:String>
+      <x:String>UiPath.UIAutomationNext.Contracts</x:String>
+      <x:String>UiPath.UIAutomationNext.Models.CV</x:String>
+      <x:String>UiPath.Vision.OCR</x:String>
+      <x:String>UiPath.OCR.Contracts</x:String>
+      <x:String>UiPath.OCR.Activities</x:String>
+      <x:String>UiPath.OCR.Contracts.Activities</x:String>
+      <x:String>UiPath.UIAutomationNext.Models</x:String>
+      <x:String>UiPath.CV</x:String>
+      <x:String>UiPath.Shared.ObjectLibrary</x:String>
+      <x:String>UiPath.CV.Activities</x:String>
+      <x:String>UiPath.CV.Activities.Interfaces</x:String>
+    </sco:Collection>
+  </TextExpression.NamespacesForImplementation>
+  <TextExpression.ReferencesForImplementation>
+    <sco:Collection x:TypeArguments="AssemblyReference">
+      <AssemblyReference>Microsoft.VisualBasic</AssemblyReference>
+      <AssemblyReference>mscorlib</AssemblyReference>
+      <AssemblyReference>NPOI</AssemblyReference>
+      <AssemblyReference>PresentationFramework</AssemblyReference>
+      <AssemblyReference>System</AssemblyReference>
+      <AssemblyReference>System.Activities</AssemblyReference>
+      <AssemblyReference>System.Collections</AssemblyReference>
+      <AssemblyReference>System.Collections.NonGeneric</AssemblyReference>
+      <AssemblyReference>System.ComponentModel</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.EventBasedAsync</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.Primitives</AssemblyReference>
+      <AssemblyReference>System.ComponentModel.TypeConverter</AssemblyReference>
+      <AssemblyReference>System.Configuration.ConfigurationManager</AssemblyReference>
+      <AssemblyReference>System.Console</AssemblyReference>
+      <AssemblyReference>System.Core</AssemblyReference>
+      <AssemblyReference>System.Data</AssemblyReference>
+      <AssemblyReference>System.Data.Common</AssemblyReference>
+      <AssemblyReference>System.Data.DataSetExtensions</AssemblyReference>
+      <AssemblyReference>System.Drawing</AssemblyReference>
+      <AssemblyReference>System.Drawing.Common</AssemblyReference>
+      <AssemblyReference>System.Drawing.Primitives</AssemblyReference>
+      <AssemblyReference>System.Linq</AssemblyReference>
+      <AssemblyReference>System.Linq.Async</AssemblyReference>
+      <AssemblyReference>System.Linq.Expressions</AssemblyReference>
+      <AssemblyReference>System.Memory</AssemblyReference>
+      <AssemblyReference>System.Memory.Data</AssemblyReference>
+      <AssemblyReference>System.Net.Mail</AssemblyReference>
+      <AssemblyReference>System.ObjectModel</AssemblyReference>
+      <AssemblyReference>System.Private.CoreLib</AssemblyReference>
+      <AssemblyReference>System.Private.DataContractSerialization</AssemblyReference>
+      <AssemblyReference>System.Private.ServiceModel</AssemblyReference>
+      <AssemblyReference>System.Private.Uri</AssemblyReference>
+      <AssemblyReference>System.Reflection.DispatchProxy</AssemblyReference>
+      <AssemblyReference>System.Reflection.Metadata</AssemblyReference>
+      <AssemblyReference>System.Reflection.TypeExtensions</AssemblyReference>
+      <AssemblyReference>System.Runtime.InteropServices</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Formatters</AssemblyReference>
+      <AssemblyReference>System.Runtime.Serialization.Primitives</AssemblyReference>
+      <AssemblyReference>System.Security.Permissions</AssemblyReference>
+      <AssemblyReference>System.Xaml</AssemblyReference>
+      <AssemblyReference>System.Xml</AssemblyReference>
+      <AssemblyReference>System.Xml.Linq</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Excel.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.GSuite.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.MicrosoftOffice365.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Contracts</AssemblyReference>
+      <AssemblyReference>UiPath.OCR.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Platform</AssemblyReference>
+      <AssemblyReference>UiPath.Studio.Constants</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.System.Activities.ViewModels</AssemblyReference>
+      <AssemblyReference>UiPath.Testing.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UiAutomation.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationCore</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities</AssemblyReference>
+      <AssemblyReference>UiPath.Vision.Core</AssemblyReference>
+      <AssemblyReference>UiPath.Workflow</AssemblyReference>
+      <AssemblyReference>WindowsBase</AssemblyReference>
+      <AssemblyReference>UiPath.CV</AssemblyReference>
+      <AssemblyReference>UiPath.UIAutomationNext.Activities.Design</AssemblyReference>
+      <AssemblyReference>UiPath.CV.Activities</AssemblyReference>
+    </sco:Collection>
+  </TextExpression.ReferencesForImplementation>
+  <Flowchart DisplayName="Tb_Workflow" sap:VirtualizedContainerService.HintSize="1300,557" sap2010:WorkflowViewState.IdRef="Flowchart_1">
+    <Flowchart.Variables>
+      <Variable x:TypeArguments="x:String" Name="FoundProjectCode" />
+      <Variable x:TypeArguments="ui:UiElement" Name="outputElement">
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:String x:Key="SourceIdRef">NApplicationCard_3</x:String>
+            <x:String x:Key="SourcePropertyName">OutUiElement</x:String>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </Variable>
+    </Flowchart.Variables>
+    <sap:WorkflowViewStateService.ViewState>
+      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+        <av:Point x:Key="ShapeLocation">425,15</av:Point>
+        <av:Size x:Key="ShapeSize">50,50</av:Size>
+        <av:PointCollection x:Key="ConnectorLocation">450,65 450,95 460,95 460,125</av:PointCollection>
+      </scg:Dictionary>
+    </sap:WorkflowViewStateService.ViewState>
+    <Flowchart.StartNode>
+      <x:Reference>__ReferenceID3</x:Reference>
+    </Flowchart.StartNode>
+    <FlowDecision x:Name="__ReferenceID0" sap2010:Annotation.AnnotationText="To check if the project code from the queue and the one in the RMT application matches or not." Condition="[FoundProjectCode.Equals(in_ProjectCodeItem.SpecificContent(&quot;ProjectCode&quot;).ToString)]" DisplayName="Check Project Code" sap:VirtualizedContainerService.HintSize="59,59" sap2010:WorkflowViewState.IdRef="FlowDecision_3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+          <av:Point x:Key="ShapeLocation">430,310</av:Point>
+          <av:Size x:Key="ShapeSize">59,59</av:Size>
+          <av:PointCollection x:Key="TrueConnector">459.5,369 459.5,399 480,399 480,515</av:PointCollection>
+          <av:PointCollection x:Key="FalseConnector">430,339.5 400,339.5 400,380 225,380</av:PointCollection>
+          <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <FlowDecision.True>
+        <FlowStep x:Name="__ReferenceID2">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">425,515</av:Point>
+              <av:Size x:Key="ShapeSize">110,70</av:Size>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <ui:BrowserScope Browser="{x:Null}" SearchScope="{x:Null}" TimeoutMS="{x:Null}" UiBrowser="{x:Null}" sap2010:Annotation.AnnotationText="The RMT Application from where we extract the project details." BrowserType="Edge" DisplayName="Extract Project Details From RMT" sap:VirtualizedContainerService.HintSize="690,11699" sap2010:WorkflowViewState.IdRef="BrowserScope_3" InformativeScreenshot="6e9cae813e51063030d11c3e6443dce9" Selector="&lt;html app='msedge.exe' title='Rmt' /&gt;">
+            <ui:BrowserScope.Body>
+              <ActivityAction x:TypeArguments="x:Object">
+                <ActivityAction.Argument>
+                  <DelegateInArgument x:TypeArguments="x:Object" Name="ContextTarget" />
+                </ActivityAction.Argument>
+                <Sequence sap:VirtualizedContainerService.HintSize="656,11552" sap2010:WorkflowViewState.IdRef="Sequence_13">
+                  <sap:WorkflowViewStateService.ViewState>
+                    <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                      <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                    </scg:Dictionary>
+                  </sap:WorkflowViewStateService.ViewState>
+                  <Sequence DisplayName="Do Extract Project Details" sap:VirtualizedContainerService.HintSize="594,11467" sap2010:WorkflowViewState.IdRef="Sequence_12">
+                    <Sequence.Variables>
+                      <Variable x:TypeArguments="x:String" Name="RmtProjectCode" />
+                      <Variable x:TypeArguments="x:String" Name="RmtAccount" />
+                      <Variable x:TypeArguments="x:String" Name="RmtBo" />
+                      <Variable x:TypeArguments="x:String" Name="RmtProjectName" />
+                      <Variable x:TypeArguments="x:String" Name="RmtDu" />
+                      <Variable x:TypeArguments="x:String" Name="RmtGroup1" />
+                      <Variable x:TypeArguments="x:String" Name="RmtProjectCategory" />
+                    </Sequence.Variables>
+                    <sap:WorkflowViewStateService.ViewState>
+                      <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                        <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                      </scg:Dictionary>
+                    </sap:WorkflowViewStateService.ViewState>
+                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" ClickType="CLICK_SINGLE" DisplayName="Click 'APP-SVG-ICONS'" sap:VirtualizedContainerService.HintSize="532,139" sap2010:WorkflowViewState.IdRef="Click_2" KeyModifiers="None" MouseButton="BTN_LEFT">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="129dd77e-ce33-4467-82a0-f9016e8bfc67" InformativeScreenshot="56f36b5f063e6b3e13b0236232f57f12" Selector="&lt;webctrl css-selector='body&amp;gt;app-root&amp;gt;div&amp;gt;app-home&amp;gt;section&amp;gt;section&amp;gt;app-project-listing&amp;gt;div&amp;gt;div&amp;gt;app-project-details&amp;gt;div&amp;gt;mat-accordion&amp;gt;mat-expansion-panel&amp;gt;mat-expansion-panel-header&amp;gt;span&amp;gt;div&amp;gt;button&amp;gt;span' isleaf='1' tag='SPAN' parentclass='mat-mdc-menu-trigger mat-mdc-tooltip-trigger app-c-btn app-c-btn--icon-no-border mdc-icon-button mat-mdc-icon-button ng-star-inserted mat-unthemed mat-mdc-button-base' idx='3' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:Click.Target>
+                    </ui:Click>
+                    <ui:Click AlterIfDisabled="{x:Null}" DelayBefore="{x:Null}" DelayMS="{x:Null}" SendWindowMessages="{x:Null}" SimulateClick="{x:Null}" sap2010:Annotation.AnnotationText="Click the edit button to get all the details of the project " ClickType="CLICK_SINGLE" DisplayName="Click on Edit" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="Click_3" KeyModifiers="None" MouseButton="BTN_LEFT">
+                      <ui:Click.CursorPosition>
+                        <ui:CursorPosition Position="Center">
+                          <ui:CursorPosition.OffsetX>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetX>
+                          <ui:CursorPosition.OffsetY>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:CursorPosition.OffsetY>
+                        </ui:CursorPosition>
+                      </ui:Click.CursorPosition>
+                      <ui:Click.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c0390e77-a572-464b-86f9-920e9f7748b0" InformativeScreenshot="f4970c76c5420a252b153f2e9bfa5e69" Selector="&lt;webctrl parentid='mat-menu-panel-5' tag='BUTTON' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:Click.Target>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:Click>
+                    <p:CVScope ContinueOnError="{x:Null}" DelayBefore="{x:Null}" ScopeId="{x:Null}" ScrollOffset="{x:Null}" Server="{x:Null}" CvMethod="ElementDetection, OCR" DesignTimeCacheId="df8cca39-5581-4783-8722-428edfd64205" DisplayName="CV Screen Scope 'pane'" sap:VirtualizedContainerService.HintSize="532,2186" sap2010:WorkflowViewState.IdRef="CVScope_1" SendOnPremData="False" Version="V6">
+                      <p:CVScope.Body>
+                        <ActivityAction x:TypeArguments="x:Object">
+                          <ActivityAction.Argument>
+                            <DelegateInArgument x:TypeArguments="x:Object" Name="CVSessionData" />
+                          </ActivityAction.Argument>
+                          <Sequence DisplayName="Do" sap2010:WorkflowViewState.IdRef="Sequence_14">
+                            <p:CvGetTextWithDescriptor DelayScreenshotAfterScroll="{x:Null}" ScrollOffset="{x:Null}" Descriptor="[&quot;Target: InputBox (516,184,375,40)&quot; +&#xA;&quot;Anchor: Text 'Project Code' (517,164,82,14)&quot;]" DesignTimeCacheId="df8cca39-5581-4783-8722-428edfd64205" DesignTimeScaleFactor="1" DisplayName="CV Get Text - InputBox" sap:VirtualizedContainerService.HintSize="400,252" sap2010:WorkflowViewState.IdRef="CvGetTextWithDescriptor_1" InformativeScreenshot="f9853d7b951c22ad737eec9d9d9eda94" NumberOfScrolls="2" RefreshBefore="True" Result="[out_ProjectCode]" ScrollDirection="None" Version="V6">
+                              <p:CvGetTextWithDescriptor.DesignTimeDescriptor>
+                                <uc:CvDescriptor Id="2495ef10-406b-4c06-bc0c-0555e510ab00">
+                                  <uc:CvDescriptor.Anchors>
+                                    <x:Array Type="uc:CvElementDescriptor">
+                                      <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="517, 164, 82, 14" ElementType="Text" Text="Project Code" />
+                                    </x:Array>
+                                  </uc:CvDescriptor.Anchors>
+                                  <uc:CvDescriptor.Target>
+                                    <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="516, 184, 375, 40" ElementType="InputBox" />
+                                  </uc:CvDescriptor.Target>
+                                </uc:CvDescriptor>
+                              </p:CvGetTextWithDescriptor.DesignTimeDescriptor>
+                            </p:CvGetTextWithDescriptor>
+                            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="400,117" sap2010:WorkflowViewState.IdRef="MessageBox_103" Text="[out_ProjectCode]" />
+                            <p:CvGetTextWithDescriptor DelayScreenshotAfterScroll="{x:Null}" ScrollOffset="{x:Null}" Descriptor="[&quot;Target: AnyWordGroup (140,331,95,16)&quot; +&#xA;&quot;Anchor: Text 'Project Category*' (129,296,116,16)&quot;]" DesignTimeCacheId="df8cca39-5581-4783-8722-428edfd64205" DesignTimeScaleFactor="1" DisplayName="CV Get Text - Any Word Group" sap:VirtualizedContainerService.HintSize="400,252" sap2010:WorkflowViewState.IdRef="CvGetTextWithDescriptor_2" InformativeScreenshot="6675e142c8366a9737b6b88de21bb22c" NumberOfScrolls="2" RefreshBefore="True" Result="[out_ProjectCategory]" ScrollDirection="None" Version="V6">
+                              <p:CvGetTextWithDescriptor.DesignTimeDescriptor>
+                                <uc:CvDescriptor Id="effe04f1-cabd-4037-8fc6-a67ea03b546f">
+                                  <uc:CvDescriptor.Anchors>
+                                    <x:Array Type="uc:CvElementDescriptor">
+                                      <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="129, 296, 116, 16" ElementType="Text" Text="Project Category*" />
+                                    </x:Array>
+                                  </uc:CvDescriptor.Anchors>
+                                  <uc:CvDescriptor.Target>
+                                    <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="140, 331, 95, 16" ElementType="AnyWordGroup" />
+                                  </uc:CvDescriptor.Target>
+                                </uc:CvDescriptor>
+                              </p:CvGetTextWithDescriptor.DesignTimeDescriptor>
+                            </p:CvGetTextWithDescriptor>
+                            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="400,117" sap2010:WorkflowViewState.IdRef="MessageBox_104" Text="[out_ProjectCategory]" />
+                            <p:CvGetTextWithDescriptor DelayScreenshotAfterScroll="{x:Null}" ScrollOffset="{x:Null}" Descriptor="[&quot;Target: InputBox (418,318,279,39)&quot; +&#xA;&quot;Anchor: Text 'Account*' (419,296,63,14)&quot; +&#xA;&quot;Anchor: Text 'BO*' (710,296,28,14)&quot;]" DesignTimeCacheId="df8cca39-5581-4783-8722-428edfd64205" DesignTimeScaleFactor="1" DisplayName="CV Get Text - InputBox" sap:VirtualizedContainerService.HintSize="400,252" sap2010:WorkflowViewState.IdRef="CvGetTextWithDescriptor_3" InformativeScreenshot="c7bb390a36f5715e1392d57a19628544" NumberOfScrolls="2" RefreshBefore="True" Result="[out_Account]" ScrollDirection="None" Version="V6">
+                              <p:CvGetTextWithDescriptor.DesignTimeDescriptor>
+                                <uc:CvDescriptor Id="723d03ae-3413-4922-bc6e-59282e0bfbc9">
+                                  <uc:CvDescriptor.Anchors>
+                                    <x:Array Type="uc:CvElementDescriptor">
+                                      <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="419, 296, 63, 14" ElementType="Text" Text="Account*" />
+                                      <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="710, 296, 28, 14" ElementType="Text" Text="BO*" />
+                                    </x:Array>
+                                  </uc:CvDescriptor.Anchors>
+                                  <uc:CvDescriptor.Target>
+                                    <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="418, 318, 279, 39" ElementType="InputBox" />
+                                  </uc:CvDescriptor.Target>
+                                </uc:CvDescriptor>
+                              </p:CvGetTextWithDescriptor.DesignTimeDescriptor>
+                            </p:CvGetTextWithDescriptor>
+                            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="400,117" sap2010:WorkflowViewState.IdRef="MessageBox_105" Text="[out_Account]" />
+                            <p:CvGetTextWithDescriptor DelayScreenshotAfterScroll="{x:Null}" ScrollOffset="{x:Null}" Descriptor="[&quot;Target: InputBox (129,395,278,39)&quot; +&#xA;&quot;Anchor: Text 'Project BU*' (130,373,75,14)&quot;]" DesignTimeCacheId="df8cca39-5581-4783-8722-428edfd64205" DesignTimeScaleFactor="1" DisplayName="CV Get Text - InputBox" sap:VirtualizedContainerService.HintSize="400,252" sap2010:WorkflowViewState.IdRef="CvGetTextWithDescriptor_4" InformativeScreenshot="331a68ae1b70bf68212b25da9f34e84d" NumberOfScrolls="2" RefreshBefore="True" Result="[out_ProjectBu]" ScrollDirection="None" Version="V6">
+                              <p:CvGetTextWithDescriptor.DesignTimeDescriptor>
+                                <uc:CvDescriptor Id="78e464e3-d569-4620-818a-8a56946422d1">
+                                  <uc:CvDescriptor.Anchors>
+                                    <x:Array Type="uc:CvElementDescriptor">
+                                      <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="130, 373, 75, 14" ElementType="Text" Text="Project BU*" />
+                                    </x:Array>
+                                  </uc:CvDescriptor.Anchors>
+                                  <uc:CvDescriptor.Target>
+                                    <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="129, 395, 278, 39" ElementType="InputBox" />
+                                  </uc:CvDescriptor.Target>
+                                </uc:CvDescriptor>
+                              </p:CvGetTextWithDescriptor.DesignTimeDescriptor>
+                            </p:CvGetTextWithDescriptor>
+                            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="400,117" sap2010:WorkflowViewState.IdRef="MessageBox_106" Text="[out_ProjectBu]" />
+                            <p:CvGetTextWithDescriptor DelayScreenshotAfterScroll="{x:Null}" ScrollOffset="{x:Null}" Descriptor="[&quot;Target: InputBox (419,395,278,39)&quot; +&#xA;&quot;Anchor: Text 'Project DU*' (420,373,76,14)&quot; +&#xA;&quot;Anchor: Text 'Group1' (710,375,45,14)&quot;]" DesignTimeCacheId="df8cca39-5581-4783-8722-428edfd64205" DesignTimeScaleFactor="1" DisplayName="CV Get Text - InputBox" sap:VirtualizedContainerService.HintSize="400,252" sap2010:WorkflowViewState.IdRef="CvGetTextWithDescriptor_5" InformativeScreenshot="b89fbb476507587387d46a2a55bb105c" NumberOfScrolls="2" RefreshBefore="True" Result="[out_ProjectDu]" ScrollDirection="None" Version="V6">
+                              <p:CvGetTextWithDescriptor.DesignTimeDescriptor>
+                                <uc:CvDescriptor Id="ae5ab5fb-6614-4c3f-83c6-cbc9a826bf72">
+                                  <uc:CvDescriptor.Anchors>
+                                    <x:Array Type="uc:CvElementDescriptor">
+                                      <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="420, 373, 76, 14" ElementType="Text" Text="Project DU*" />
+                                      <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="710, 375, 45, 14" ElementType="Text" Text="Group1" />
+                                    </x:Array>
+                                  </uc:CvDescriptor.Anchors>
+                                  <uc:CvDescriptor.Target>
+                                    <uc:CvElementDescriptor CellExtraInfo="{x:Null}" DesignTimeArea="419, 395, 278, 39" ElementType="InputBox" />
+                                  </uc:CvDescriptor.Target>
+                                </uc:CvDescriptor>
+                              </p:CvGetTextWithDescriptor.DesignTimeDescriptor>
+                            </p:CvGetTextWithDescriptor>
+                            <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="400,108" sap2010:WorkflowViewState.IdRef="MessageBox_107" Text="[out_ProjectDu]" />
+                          </Sequence>
+                        </ActivityAction>
+                      </p:CVScope.Body>
+                      <p:CVScope.DesignTimeCache>
+                        <uc:CVCache CvUiElements="{x:Null}" OcrTexts="{x:Null}" DataSent="False" />
+                      </p:CVScope.DesignTimeCache>
+                      <p:CVScope.DesignTimeCacheContainer>
+                        <uc:CvCacheContainer>
+                          <uc:CvCacheContainer.Caches>
+                            <scg:List x:TypeArguments="uc:CVCache" Capacity="1">
+                              <uc:CVCache DataSent="False" DisplayName="Screen CV Get Text - 'Project  (Main)" Id="df8cca39-5581-4783-8722-428edfd64205" InformativeScreenshot="bf7f370c6f6e6272b1d557a2faadc720" LogicalPosition="0, 0" OcrText="PMT Rmt _ X https://rmtool-uat.experionglobal.dev/app/projects + ... , Edit Project X (M + Parent Project Project Code i Select... v DU5-MAP-1000 Project Details Project Category* Account* BO* Project Name* Internal Project X v TRL v iMAAP Dev Services X X iMAAP Dev Services Project BU* Project DU* Group1 Start Date* Service Delivery v DU5 v Select... v 19/06/2024 tHL End Date Project Location* Legal Entity* Project Status* 30/06/2024 Kochi X v Experion Technologies (India) ... X v Active X v Custodians Project Manager Delivery Manager Account Manager Sales Person Abraham Babu X v Abitha Andrews X v Abi Alias X v Abhinav Mathew X v Cancel Update" Position="0, 0" ScreenshotGuid="30964466-4bc7-4b5f-8656-1e12ffba1f01" ServerVersion="1">
+                                <uc:CVCache.CvAnchorRelations>
+                                  <scg:List x:TypeArguments="uc:AnchorRelationInfo" Capacity="32">
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="5">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>48</x:Int32>
+                                          <x:Int32>49</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="87">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>65</x:Int32>
+                                          <x:Int32>66</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="18">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>28</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="88">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>87</x:Int32>
+                                          <x:Int32>88</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="True" Target="75">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>63</x:Int32>
+                                          <x:Int32>64</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="41">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>26</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="90">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>71</x:Int32>
+                                          <x:Int32>72</x:Int32>
+                                          <x:Int32>73</x:Int32>
+                                          <x:Int32>74</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="80">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>47</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="86">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>85</x:Int32>
+                                          <x:Int32>86</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="True" Target="69">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>62</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="2">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>15</x:Int32>
+                                          <x:Int32>16</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="83">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>68</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="81">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>46</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="84">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>83</x:Int32>
+                                          <x:Int32>84</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="78">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>25</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="True" Target="91">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>81</x:Int32>
+                                          <x:Int32>82</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="85">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>59</x:Int32>
+                                          <x:Int32>60</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="89">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>23</x:Int32>
+                                          <x:Int32>24</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="91">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>89</x:Int32>
+                                          <x:Int32>90</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="82">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>13</x:Int32>
+                                          <x:Int32>14</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="79">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>44</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                    <uc:AnchorRelationInfo IsTargetText="False" Target="8">
+                                      <uc:AnchorRelationInfo.Anchors>
+                                        <x:Array Type="x:Int32">
+                                          <x:Int32>4</x:Int32>
+                                        </x:Array>
+                                      </uc:AnchorRelationInfo.Anchors>
+                                    </uc:AnchorRelationInfo>
+                                  </scg:List>
+                                </uc:CVCache.CvAnchorRelations>
+                                <uc:CVCache.CvUiElements>
+                                  <scg:List x:TypeArguments="uc:CvElementInfo" Capacity="128">
+                                    <uc:CvElementInfo Category="Button" Region="1055, 666, 114, 44" />
+                                    <uc:CvElementInfo Category="Icon" Region="73, 469, 26, 26" />
+                                    <uc:CvElementInfo Category="InputBox" Region="516, 184, 375, 40" />
+                                    <uc:CvElementInfo Category="Button" Region="1181, 666, 112, 43" />
+                                    <uc:CvElementInfo Category="Icon" Region="73, 356, 27, 29" />
+                                    <uc:CvElementInfo Category="InputBox" Region="1000, 395, 278, 39" />
+                                    <uc:CvElementInfo Category="Icon" Region="72, 525, 26, 26" />
+                                    <uc:CvElementInfo Category="Icon" Region="8, 1, 27, 29" />
+                                    <uc:CvElementInfo Category="InputBox" Region="100, 34, 950, 32" />
+                                    <uc:CvElementInfo Category="Icon" Region="1246, 40, 24, 23" />
+                                    <uc:CvElementInfo Category="Icon" Region="376, 481, 21, 21" />
+                                    <uc:CvElementInfo Category="Icon" Region="74, 246, 24, 25" />
+                                    <uc:CvElementInfo Category="MinimizeButton" Region="1240, 7, 22, 18" />
+                                    <uc:CvElementInfo Category="Icon" Region="12, 77, 21, 21" />
+                                    <uc:CvElementInfo Category="Icon" Region="1158, 39, 25, 23" />
+                                    <uc:CvElementInfo Category="Icon" Region="1114, 40, 23, 22" />
+                                    <uc:CvElementInfo Category="CloseButton" Region="1261, 91, 22, 23" />
+                                    <uc:CvElementInfo Category="Icon" Region="602, 158, 21, 21" />
+                                    <uc:CvElementInfo Category="InputBox" Region="1000, 319, 279, 39" />
+                                    <uc:CvElementInfo Category="Icon" Region="71, 303, 29, 25" />
+                                    <uc:CvElementInfo Category="Icon" Region="115, 39, 20, 22" />
+                                    <uc:CvElementInfo Category="Icon" Region="1248, 404, 21, 21" />
+                                    <uc:CvElementInfo Category="Button" Region="5, 103, 38, 39" />
+                                    <uc:CvElementInfo Category="Icon" Region="1012, 39, 24, 23" />
+                                    <uc:CvElementInfo Category="Icon" Region="1202, 39, 23, 23" />
+                                    <uc:CvElementInfo Category="Icon" Region="657, 5, 22, 22" />
+                                    <uc:CvElementInfo Category="Icon" Region="958, 327, 21, 22" />
+                                    <uc:CvElementInfo Category="Icon" Region="1066, 39, 23, 23" />
+                                    <uc:CvElementInfo Category="Icon" Region="972, 38, 24, 23" />
+                                    <uc:CvElementInfo Category="Icon" Region="632, 607, 22, 22" />
+                                    <uc:CvElementInfo Category="Icon" Region="1329, 36, 30, 29" />
+                                    <uc:CvElementInfo Category="Icon" Region="60, 38, 24, 24" />
+                                    <uc:CvElementInfo Category="Icon" Region="632, 481, 22, 22" />
+                                    <uc:CvElementInfo Category="CloseButton" Region="1333, 6, 19, 19" />
+                                    <uc:CvElementInfo Category="Icon" Region="923, 607, 22, 22" />
+                                    <uc:CvElementInfo Category="Icon" Region="50, 4, 23, 22" />
+                                    <uc:CvElementInfo Category="MaximizeButton" Region="1288, 6, 18, 19" />
+                                    <uc:CvElementInfo Category="Icon" Region="1214, 607, 22, 22" />
+                                    <uc:CvElementInfo Category="Icon" Region="342, 327, 22, 22" />
+                                    <uc:CvElementInfo Category="Icon" Region="342, 607, 22, 22" />
+                                    <uc:CvElementInfo Category="Icon" Region="1214, 481, 22, 22" />
+                                    <uc:CvElementInfo Category="InputBox" Region="712, 319, 274, 37" />
+                                    <uc:CvElementInfo Category="Icon" Region="923, 481, 21, 22" />
+                                    <uc:CvElementInfo Category="Icon" Region="13, 111, 22, 22" />
+                                    <uc:CvElementInfo Category="Icon" Region="11, 150, 26, 25" />
+                                    <uc:CvElementInfo Category="Icon" Region="15, 38, 25, 23" />
+                                    <uc:CvElementInfo Category="Icon" Region="1290, 43, 24, 16" />
+                                    <uc:CvElementInfo Category="Button" Region="61, 177, 45, 50" />
+                                    <uc:CvElementInfo Category="Icon" Region="72, 189, 29, 26" />
+                                    <uc:CvElementInfo Category="Icon" Region="66, 84, 40, 38" />
+                                    <uc:CvElementInfo Category="CloseButton" Region="872, 330, 16, 17" />
+                                    <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="483, 371, 16, 14" />
+                                    <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1062, 371, 15, 13" />
+                                    <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="872, 330, 17, 17" />
+                                    <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="190, 371, 17, 15" />
+                                    <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1308, 169, 21, 17" />
+                                    <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="72, 413, 27, 25" />
+                                    <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="229, 294, 18, 18" />
+                                    <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="781, 448, 15, 15" />
+                                    <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="521, 448, 13, 13" />
+                                    <uc:CvElementInfo Category="ArrowButton" Confidence="Runtime" Region="14, 38, 26, 23" />
+                                    <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="723, 293, 18, 15" />
+                                    <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1304, 79, 24, 46" />
+                                    <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="1087, 448, 15, 13" />
+                                    <uc:CvElementInfo Category="Icon" Confidence="Runtime" Region="470, 294, 14, 13" />
+                                    <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="714, 319, 268, 36" />
+                                    <uc:CvElementInfo Category="Button" Confidence="Runtime" Region="957, 327, 21, 21" />
+                                    <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="407, 573, 307, 24" />
+                                    <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="696, 359, 9, 36" />
+                                    <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="408, 433, 8, 38" />
+                                    <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="988, 358, 8, 36" />
+                                    <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="403, 435, 10, 38" />
+                                    <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="409, 358, 7, 36" />
+                                    <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="403, 361, 10, 34" />
+                                    <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="691, 572, 300, 25" />
+                                    <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="700, 358, 7, 37" />
+                                    <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="988, 435, 8, 36" />
+                                    <uc:CvElementInfo Category="Cell" Confidence="Runtime" Region="118, 572, 292, 25" />
+                                    <uc:CvElementInfo Category="InputBox" Region="418, 318, 279, 39" />
+                                    <uc:CvElementInfo Category="InputBox" Region="129, 395, 278, 39" />
+                                    <uc:CvElementInfo Category="InputBox" Region="710, 395, 277, 40" />
+                                    <uc:CvElementInfo Category="InputBox" Region="419, 395, 278, 39" />
+                                    <uc:CvElementInfo Category="InputBox" Region="129, 184, 374, 40" />
+                                    <uc:CvElementInfo Category="InputBox" Region="419, 472, 278, 39" />
+                                    <uc:CvElementInfo Category="InputBox" Region="419, 598, 279, 39" />
+                                    <uc:CvElementInfo Category="InputBox" Region="129, 472, 277, 39" />
+                                    <uc:CvElementInfo Category="InputBox" Region="710, 598, 278, 39" />
+                                    <uc:CvElementInfo Category="InputBox" Region="1000, 472, 279, 39" />
+                                    <uc:CvElementInfo Category="InputBox" Region="999, 599, 279, 39" />
+                                    <uc:CvElementInfo Category="InputBox" Region="129, 318, 278, 39" />
+                                    <uc:CvElementInfo Category="InputBox" Region="711, 473, 277, 39" />
+                                    <uc:CvElementInfo Category="InputBox" Region="129, 598, 278, 39" />
+                                    <uc:CvElementInfo Category="ArrowButton" Region="665, 399, 27, 32" />
+                                    <uc:CvElementInfo Category="ArrowButton" Region="955, 399, 27, 32" />
+                                    <uc:CvElementInfo Category="ArrowButton" Region="373, 602, 27, 31" />
+                                    <uc:CvElementInfo Category="ArrowButton" Region="374, 399, 27, 31" />
+                                    <uc:CvElementInfo Category="ArrowButton" Region="665, 603, 27, 30" />
+                                    <uc:CvElementInfo Category="ArrowButton" Region="664, 322, 28, 32" />
+                                    <uc:CvElementInfo Category="ArrowButton" Region="470, 187, 28, 33" />
+                                    <uc:CvElementInfo Category="ArrowButton" Region="373, 322, 27, 31" />
+                                    <uc:CvElementInfo Category="ArrowButton" Region="955, 603, 27, 30" />
+                                    <uc:CvElementInfo Category="ArrowButton" Region="665, 476, 27, 31" />
+                                    <uc:CvElementInfo Category="ArrowButton" Region="955, 476, 26, 31" />
+                                    <uc:CvElementInfo Category="ArrowButton" Region="1246, 603, 26, 30" />
+                                    <uc:CvElementInfo Category="ArrowButton" Region="1246, 477, 26, 30" />
+                                    <uc:CvElementInfo Category="ArrowButton" Confidence="Runtime" Region="377, 481, 20, 20" />
+                                  </scg:List>
+                                </uc:CVCache.CvUiElements>
+                                <uc:CVCache.OcrTexts>
+                                  <scg:List x:TypeArguments="uc:OcrTextInfo" Capacity="107">
+                                    <uc:OcrTextInfo Region="661, 11, 13, 9" Text="PMT" />
+                                    <uc:OcrTextInfo Region="683, 10, 23, 12" Text="Rmt" />
+                                    <uc:OcrTextInfo Region="1244, 6, 13, 12" Text="_" />
+                                    <uc:OcrTextInfo Region="1336, 9, 13, 13" Text="X" />
+                                    <uc:OcrTextInfo Region="146, 43, 322, 17" Text="https://rmtool-uat.experionglobal.dev/app/projects" />
+                                    <uc:OcrTextInfo Region="1211, 48, 10, 10" Text="+" />
+                                    <uc:OcrTextInfo Region="1293, 40, 17, 14" Text="..." />
+                                    <uc:OcrTextInfo Region="1337, 42, 12, 17" Text="," />
+                                    <uc:OcrTextInfo Region="129, 95, 33, 15" Text="Edit" />
+                                    <uc:OcrTextInfo Region="165, 95, 58, 18" Text="Project" />
+                                    <uc:OcrTextInfo Region="1264, 95, 15, 15" Text="X" />
+                                    <uc:OcrTextInfo Region="16, 116, 14, 9" Text="(M" />
+                                    <uc:OcrTextInfo Region="14, 153, 18, 18" Text="+" />
+                                    <uc:OcrTextInfo Region="129, 164, 42, 12" Text="Parent" />
+                                    <uc:OcrTextInfo Region="174, 164, 46, 14" Text="Project" />
+                                    <uc:OcrTextInfo Region="517, 164, 45, 14" Text="Project" />
+                                    <uc:OcrTextInfo Region="565, 164, 34, 12" Text="Code" />
+                                    <uc:OcrTextInfo Region="609, 163, 6, 10" Text="i" />
+                                    <uc:OcrTextInfo Region="139, 196, 51, 12" Text="Select..." />
+                                    <uc:OcrTextInfo Region="476, 198, 14, 9" Text="v" />
+                                    <uc:OcrTextInfo Region="530, 198, 106, 13" Text="DU5-MAP-1000" />
+                                    <uc:OcrTextInfo Region="129, 265, 61, 18" Text="Project" />
+                                    <uc:OcrTextInfo Region="193, 265, 59, 15" Text="Details" />
+                                    <uc:OcrTextInfo Region="129, 298, 46, 14" Text="Project" />
+                                    <uc:OcrTextInfo Region="177, 296, 68, 16" Text="Category*" />
+                                    <uc:OcrTextInfo Region="419, 296, 63, 14" Text="Account*" />
+                                    <uc:OcrTextInfo Region="710, 296, 28, 14" Text="BO*" />
+                                    <uc:OcrTextInfo Region="1001, 298, 46, 14" Text="Project" />
+                                    <uc:OcrTextInfo Region="1049, 296, 45, 14" Text="Name*" />
+                                    <uc:OcrTextInfo Region="140, 331, 48, 13" Text="Internal" />
+                                    <uc:OcrTextInfo Region="191, 331, 44, 16" Text="Project" />
+                                    <uc:OcrTextInfo Region="346, 332, 13, 11" Text="X" />
+                                    <uc:OcrTextInfo Region="379, 333, 14, 9" Text="v" />
+                                    <uc:OcrTextInfo Region="429, 331, 26, 13" Text="TRL" />
+                                    <uc:OcrTextInfo Region="670, 332, 15, 10" Text="v" />
+                                    <uc:OcrTextInfo Region="721, 331, 48, 13" Text="iMAAP" />
+                                    <uc:OcrTextInfo Region="772, 331, 28, 13" Text="Dev" />
+                                    <uc:OcrTextInfo Region="804, 331, 61, 13" Text="Services" />
+                                    <uc:OcrTextInfo Region="874, 332, 12, 12" Text="X" />
+                                    <uc:OcrTextInfo Region="961, 332, 13, 11" Text="X" />
+                                    <uc:OcrTextInfo Region="1014, 332, 45, 13" Text="iMAAP" />
+                                    <uc:OcrTextInfo Region="1062, 332, 27, 13" Text="Dev" />
+                                    <uc:OcrTextInfo Region="1091, 332, 58, 13" Text="Services" />
+                                    <uc:OcrTextInfo Region="130, 375, 45, 14" Text="Project" />
+                                    <uc:OcrTextInfo Region="177, 373, 28, 14" Text="BU*" />
+                                    <uc:OcrTextInfo Region="420, 375, 46, 14" Text="Project" />
+                                    <uc:OcrTextInfo Region="468, 373, 28, 14" Text="DU*" />
+                                    <uc:OcrTextInfo Region="710, 375, 45, 14" Text="Group1" />
+                                    <uc:OcrTextInfo Region="1001, 375, 33, 12" Text="Start" />
+                                    <uc:OcrTextInfo Region="1036, 373, 38, 14" Text="Date*" />
+                                    <uc:OcrTextInfo Region="139, 408, 46, 13" Text="Service" />
+                                    <uc:OcrTextInfo Region="187, 408, 52, 16" Text="Delivery" />
+                                    <uc:OcrTextInfo Region="379, 409, 14, 9" Text="v" />
+                                    <uc:OcrTextInfo Region="430, 408, 28, 13" Text="DU5" />
+                                    <uc:OcrTextInfo Region="670, 409, 14, 9" Text="v" />
+                                    <uc:OcrTextInfo Region="721, 407, 50, 12" Text="Select..." />
+                                    <uc:OcrTextInfo Region="960, 409, 14, 10" Text="v" />
+                                    <uc:OcrTextInfo Region="1012, 408, 72, 15" Text="19/06/2024" />
+                                    <uc:OcrTextInfo Region="74, 417, 22, 18" Text="tHL" />
+                                    <uc:OcrTextInfo Region="129, 452, 25, 12" Text="End" />
+                                    <uc:OcrTextInfo Region="157, 452, 30, 12" Text="Date" />
+                                    <uc:OcrTextInfo Region="420, 452, 46, 14" Text="Project" />
+                                    <uc:OcrTextInfo Region="468, 450, 63, 14" Text="Location*" />
+                                    <uc:OcrTextInfo Region="710, 452, 35, 14" Text="Legal" />
+                                    <uc:OcrTextInfo Region="748, 452, 42, 14" Text="Entity*" />
+                                    <uc:OcrTextInfo Region="1001, 452, 46, 14" Text="Project" />
+                                    <uc:OcrTextInfo Region="1049, 451, 46, 13" Text="Status*" />
+                                    <uc:OcrTextInfo Region="139, 485, 73, 15" Text="30/06/2024" />
+                                    <uc:OcrTextInfo Region="430, 485, 35, 13" Text="Kochi" />
+                                    <uc:OcrTextInfo Region="636, 486, 13, 11" Text="X" />
+                                    <uc:OcrTextInfo Region="670, 487, 14, 9" Text="v" />
+                                    <uc:OcrTextInfo Region="721, 485, 54, 16" Text="Experion" />
+                                    <uc:OcrTextInfo Region="778, 485, 82, 16" Text="Technologies" />
+                                    <uc:OcrTextInfo Region="862, 485, 40, 15" Text="(India)" />
+                                    <uc:OcrTextInfo Region="905, 486, 10, 12" Text="..." />
+                                    <uc:OcrTextInfo Region="927, 486, 13, 11" Text="X" />
+                                    <uc:OcrTextInfo Region="960, 487, 15, 9" Text="v" />
+                                    <uc:OcrTextInfo Region="1011, 485, 39, 13" Text="Active" />
+                                    <uc:OcrTextInfo Region="1217, 486, 13, 11" Text="X" />
+                                    <uc:OcrTextInfo Region="1251, 487, 15, 9" Text="v" />
+                                    <uc:OcrTextInfo Region="129, 545, 96, 15" Text="Custodians" />
+                                    <uc:OcrTextInfo Region="129, 578, 46, 14" Text="Project" />
+                                    <uc:OcrTextInfo Region="178, 578, 56, 15" Text="Manager" />
+                                    <uc:OcrTextInfo Region="420, 578, 53, 14" Text="Delivery" />
+                                    <uc:OcrTextInfo Region="475, 578, 56, 15" Text="Manager" />
+                                    <uc:OcrTextInfo Region="710, 578, 54, 12" Text="Account" />
+                                    <uc:OcrTextInfo Region="766, 578, 57, 14" Text="Manager" />
+                                    <uc:OcrTextInfo Region="1001, 578, 35, 12" Text="Sales" />
+                                    <uc:OcrTextInfo Region="1039, 578, 44, 12" Text="Person" />
+                                    <uc:OcrTextInfo Region="139, 611, 58, 13" Text="Abraham" />
+                                    <uc:OcrTextInfo Region="200, 611, 32, 13" Text="Babu" />
+                                    <uc:OcrTextInfo Region="346, 612, 13, 11" Text="X" />
+                                    <uc:OcrTextInfo Region="379, 613, 15, 8" Text="v" />
+                                    <uc:OcrTextInfo Region="429, 611, 43, 13" Text="Abitha" />
+                                    <uc:OcrTextInfo Region="474, 611, 55, 13" Text="Andrews" />
+                                    <uc:OcrTextInfo Region="637, 612, 12, 11" Text="X" />
+                                    <uc:OcrTextInfo Region="670, 613, 15, 8" Text="v" />
+                                    <uc:OcrTextInfo Region="720, 611, 23, 13" Text="Abi" />
+                                    <uc:OcrTextInfo Region="744, 611, 31, 13" Text="Alias" />
+                                    <uc:OcrTextInfo Region="927, 612, 13, 11" Text="X" />
+                                    <uc:OcrTextInfo Region="960, 613, 15, 8" Text="v" />
+                                    <uc:OcrTextInfo Region="1010, 611, 53, 13" Text="Abhinav" />
+                                    <uc:OcrTextInfo Region="1066, 611, 50, 13" Text="Mathew" />
+                                    <uc:OcrTextInfo Region="1218, 612, 12, 11" Text="X" />
+                                    <uc:OcrTextInfo Region="1251, 613, 14, 8" Text="v" />
+                                    <uc:OcrTextInfo Region="1087, 681, 46, 12" Text="Cancel" />
+                                    <uc:OcrTextInfo Region="1210, 681, 50, 15" Text="Update" />
+                                  </scg:List>
+                                </uc:CVCache.OcrTexts>
+                              </uc:CVCache>
+                            </scg:List>
+                          </uc:CvCacheContainer.Caches>
+                        </uc:CvCacheContainer>
+                      </p:CVScope.DesignTimeCacheContainer>
+                      <p:CVScope.OCREngine>
+                        <ActivityFunc x:TypeArguments="sd:Image, scg:IEnumerable(scg:KeyValuePair(sd1:Rectangle, x:String))">
+                          <ActivityFunc.Argument>
+                            <DelegateInArgument x:TypeArguments="sd:Image" Name="Image" />
+                          </ActivityFunc.Argument>
+                          <p1:UiPathScreenOCR ApiKey="{x:Null}" Endpoint="{x:Null}" Output="{x:Null}" PredictionId="{x:Null}" Text="{x:Null}" UseLocalServer="{x:Null}" ComputeSkewAngle="False" ExtractWords="True" sap:VirtualizedContainerService.HintSize="200,25" sap2010:WorkflowViewState.IdRef="UiPathScreenOCR_1" Image="[Image]" Language="en" NoopExecution="False" Profile="Screen" Scale="1" Timeout="100000" />
+                        </ActivityFunc>
+                      </p:CVScope.OCREngine>
+                      <p:CVScope.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="c27354de-53ad-4d0d-bf04-106f8827c7a5" InformativeScreenshot="446ed15af3ced112242a47140736af75" Selector="&lt;wnd app='msedge.exe' cls='Chrome_WidgetWin_1' title='Rmt - Work - Microsoft​ Edge' /&gt;&lt;ctrl name='Rmt - Microsoft Edge' role='pane' /&gt;&lt;ctrl idx='3' role='pane' /&gt;" WaitForReady="INTERACTIVE">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                        </ui:Target>
+                      </p:CVScope.Target>
+                      <p:CVScope.UseLocalServer>
+                        <InArgument x:TypeArguments="x:Boolean" />
+                      </p:CVScope.UseLocalServer>
+                    </p:CVScope>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,357" sap2010:WorkflowViewState.IdRef="CommentOut_1">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="Sequence_15">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract Project code " DisplayName="Get Project Code" sap:VirtualizedContainerService.HintSize="354,161" sap2010:WorkflowViewState.IdRef="GetValue_2">
+                            <ui:GetValue.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="2e481692-ad16-4330-8daf-fad6138a09bd" InformativeScreenshot="5e85f400ca4e1de460746b871c06d76f" Selector="&lt;webctrl class='form-group' idx='2' parentid='mat-mdc-dialog-0' tag='DIV' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:GetValue.Target>
+                            <ui:GetValue.Value>
+                              <OutArgument x:TypeArguments="x:String">[RmtProjectCode]</OutArgument>
+                            </ui:GetValue.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:GetValue>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                    </ui:CommentOut>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,332" sap2010:WorkflowViewState.IdRef="CommentOut_2">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,221" sap2010:WorkflowViewState.IdRef="Sequence_16">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap2010:Annotation.AnnotationText="Assign activity to extract the value of the project code" DisplayName="Assign Project Code" sap:VirtualizedContainerService.HintSize="434,136" sap2010:WorkflowViewState.IdRef="Assign_9">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[out_ProjectCode]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[RmtProjectCode.Replace("Project Code info","")]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                    </ui:CommentOut>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,357" sap2010:WorkflowViewState.IdRef="CommentOut_3">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="Sequence_17">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the project category" DisplayName="Get Project Category" sap:VirtualizedContainerService.HintSize="354,161" sap2010:WorkflowViewState.IdRef="GetValue_28">
+                            <ui:GetValue.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="467a2aba-f626-44a1-9b7f-e8bc258f849e" InformativeScreenshot="5c355f0ea8cb646bfe68dc28e1145932" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='mat-mdc-dialog-0' tag='DIV' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:GetValue.Target>
+                            <ui:GetValue.Value>
+                              <OutArgument x:TypeArguments="x:String">[RmtProjectCategory]</OutArgument>
+                            </ui:GetValue.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:GetValue>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                    </ui:CommentOut>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,301" sap2010:WorkflowViewState.IdRef="CommentOut_4">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,190" sap2010:WorkflowViewState.IdRef="Sequence_18">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign DisplayName="Assign Project Category" sap:VirtualizedContainerService.HintSize="434,105" sap2010:WorkflowViewState.IdRef="Assign_10">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[out_ProjectCategory]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[RmtProjectCategory.Replace("Project Category","").Replace("chevron-downwarning-stroke","").Trim()]</InArgument>
+                            </Assign.Value>
+                          </Assign>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                    </ui:CommentOut>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,357" sap2010:WorkflowViewState.IdRef="CommentOut_5">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="Sequence_19">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the Account detail" DisplayName="Get Account" sap:VirtualizedContainerService.HintSize="354,161" sap2010:WorkflowViewState.IdRef="GetValue_5">
+                            <ui:GetValue.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d2463fc0-ed85-4749-8b02-555685d6927f" InformativeScreenshot="09fcb7bd686781eea4a62606a1e303f0" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='2' parentid='mat-mdc-dialog-0' tag='DIV' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:GetValue.Target>
+                            <ui:GetValue.Value>
+                              <OutArgument x:TypeArguments="x:String">[RmtAccount]</OutArgument>
+                            </ui:GetValue.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:GetValue>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                    </ui:CommentOut>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,332" sap2010:WorkflowViewState.IdRef="CommentOut_6">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,221" sap2010:WorkflowViewState.IdRef="Sequence_20">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap2010:Annotation.AnnotationText="Assign activity to extract the value of the Account" DisplayName="Assign Account" sap:VirtualizedContainerService.HintSize="434,136" sap2010:WorkflowViewState.IdRef="Assign_3">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[out_Account]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[RmtAccount.Replace("Account"," ").Replace("chevron-downwarning-stroke","").Trim()]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                    </ui:CommentOut>
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the business unit" DisplayName="Get Business Unit" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_6">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="7072619b-364a-40bb-b1b8-1d4e8260e343" InformativeScreenshot="c12c126d839938a8d75f13fbd2d0cddc" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-tag-box&amp;gt;div&amp;gt;div&amp;gt;div' parentid='mat-mdc-dialog-0' tag='DIV' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_BusinessUnit]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_82" Text="[out_BusinessUnit]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract project name" DisplayName="Get Project Name" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_7">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="691bc51e-d974-4474-af19-4b0480329a98" InformativeScreenshot="57bb5d3b01284b91178f6e519c71c95c" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' parentid='mat-mdc-dialog-0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[RmtProjectName]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <Assign sap2010:Annotation.AnnotationText="Assign activity to extract the value of the project name" DisplayName="Assign Project Name" sap:VirtualizedContainerService.HintSize="532,145" sap2010:WorkflowViewState.IdRef="Assign_5">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[out_ProjectName]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[RmtProjectName.Replace("Project Name"," ").Replace("stroke","").Replace("warning-","").Trim()]</InArgument>
+                      </Assign.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Assign>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_84" Text="[out_ProjectName]" />
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,357" sap2010:WorkflowViewState.IdRef="CommentOut_7">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="Sequence_21">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the project BU" DisplayName="Get Project BU" sap:VirtualizedContainerService.HintSize="354,161" sap2010:WorkflowViewState.IdRef="GetValue_8">
+                            <ui:GetValue.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b9fc06de-846f-47dc-b8e6-c33b57d62b07" InformativeScreenshot="9caee89f29ac7a05353f5deeb860bfed" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='5' parentid='mat-mdc-dialog-0' tag='DIV' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:GetValue.Target>
+                            <ui:GetValue.Value>
+                              <OutArgument x:TypeArguments="x:String">[RmtBo]</OutArgument>
+                            </ui:GetValue.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:GetValue>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                    </ui:CommentOut>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,332" sap2010:WorkflowViewState.IdRef="CommentOut_8">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,221" sap2010:WorkflowViewState.IdRef="Sequence_22">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap2010:Annotation.AnnotationText="Assign activity to extract the value of the project BU" DisplayName="Assign Project Bu" sap:VirtualizedContainerService.HintSize="434,136" sap2010:WorkflowViewState.IdRef="Assign_6">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[out_ProjectBu]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[RmtBo.Replace("Project BU"," ").Replace("chevron-downwarning-stroke","").Trim()]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                    </ui:CommentOut>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,357" sap2010:WorkflowViewState.IdRef="CommentOut_9">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="416,246" sap2010:WorkflowViewState.IdRef="Sequence_23">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract Project DU" DisplayName="Get Project DU" sap:VirtualizedContainerService.HintSize="354,161" sap2010:WorkflowViewState.IdRef="GetValue_9">
+                            <ui:GetValue.Target>
+                              <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b9fc06de-846f-47dc-b8e6-c33b57d62b07" InformativeScreenshot="501256c9346e92043b526934f6a907b1" Selector="&lt;webctrl css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' idx='6' parentid='mat-mdc-dialog-0' tag='DIV' /&gt;">
+                                <ui:Target.TimeoutMS>
+                                  <InArgument x:TypeArguments="x:Int32" />
+                                </ui:Target.TimeoutMS>
+                                <ui:Target.WaitForReady>
+                                  <InArgument x:TypeArguments="ui:WaitForReady" />
+                                </ui:Target.WaitForReady>
+                              </ui:Target>
+                            </ui:GetValue.Target>
+                            <ui:GetValue.Value>
+                              <OutArgument x:TypeArguments="x:String">[RmtDu]</OutArgument>
+                            </ui:GetValue.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </ui:GetValue>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                    </ui:CommentOut>
+                    <ui:CommentOut DisplayName="Comment Out" sap:VirtualizedContainerService.HintSize="532,332" sap2010:WorkflowViewState.IdRef="CommentOut_10">
+                      <ui:CommentOut.Body>
+                        <Sequence DisplayName="Ignored Activities" sap:VirtualizedContainerService.HintSize="496,221" sap2010:WorkflowViewState.IdRef="Sequence_24">
+                          <sap:WorkflowViewStateService.ViewState>
+                            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                              <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                            </scg:Dictionary>
+                          </sap:WorkflowViewStateService.ViewState>
+                          <Assign sap2010:Annotation.AnnotationText="Assign activity to extract the value of the project DU" DisplayName="Assign Project Du" sap:VirtualizedContainerService.HintSize="434,136" sap2010:WorkflowViewState.IdRef="Assign_7">
+                            <Assign.To>
+                              <OutArgument x:TypeArguments="x:String">[out_ProjectDu]</OutArgument>
+                            </Assign.To>
+                            <Assign.Value>
+                              <InArgument x:TypeArguments="x:String">[RmtDu.Replace("Project DU","").Replace("chevron-downwarning-stroke","").Trim()]</InArgument>
+                            </Assign.Value>
+                            <sap:WorkflowViewStateService.ViewState>
+                              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                                <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                              </scg:Dictionary>
+                            </sap:WorkflowViewStateService.ViewState>
+                          </Assign>
+                        </Sequence>
+                      </ui:CommentOut.Body>
+                    </ui:CommentOut>
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Get the Group 1" DisplayName="Get Graoup 1" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_10">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b9fc06de-846f-47dc-b8e6-c33b57d62b07" InformativeScreenshot="2ae79430209a9fbf7cb671a0dd667c46" Selector="&lt;webctrl class='form-group' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div' parentid='mat-mdc-dialog-0' tag='DIV' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[RmtGroup1]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <Assign sap2010:Annotation.AnnotationText="Assign activity to extract the value of the Group 1" DisplayName="Assign Group 1" sap:VirtualizedContainerService.HintSize="532,145" sap2010:WorkflowViewState.IdRef="Assign_8">
+                      <Assign.To>
+                        <OutArgument x:TypeArguments="x:String">[out_ProjectGroup1]</OutArgument>
+                      </Assign.To>
+                      <Assign.Value>
+                        <InArgument x:TypeArguments="x:String">[RmtGroup1.Replace("Group1","").Replace("chevron-down","").Trim()]</InArgument>
+                      </Assign.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </Assign>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_87" Text="[out_ProjectGroup1]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the start date of the project" DisplayName="Get Start Date" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_11">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b9fc06de-846f-47dc-b8e6-c33b57d62b07" InformativeScreenshot="d2fff8afc72c89e3adce38bd148c2539" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-date-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_StartDate]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                          <x:Boolean x:Key="IsPinned">False</x:Boolean>
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_88" Text="[out_StartDate]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the end date of the project" DisplayName="Get End Date" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_12">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="5fb3ae0c-8e0c-4ea0-92a1-f81d3ea4c80b" InformativeScreenshot="7860b4f1c4f799d315c238504971d9a4" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-date-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='2' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_EndDate]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_89" Text="[out_EndDate]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the project location" DisplayName="Get Project Location" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_27">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="415aeb31-08aa-4d30-ae10-cb01760f5cdc" InformativeScreenshot="5ea8caa1451056c0561578ef74214ce0" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-select-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_ProjectLocation]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_90" Text="[out_ProjectLocation]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the legal entity of the project" DisplayName="Get Legal Entity" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_14">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="ea1621a1-7f28-415c-983f-9a8273f35665" InformativeScreenshot="3abc028af0a09d0f9901fead9b03307b" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-select-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='2' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_LegalEntity]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_91" Text="[out_LegalEntity]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the status of the project" DisplayName="Get Project Status" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_15">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="1fc3ebf2-e5e4-42a2-b3a3-9158bbd25992" InformativeScreenshot="81dda9e94ac531f6949674811790e19e" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-select-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='4' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_ProjectStatus]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_92" Text="[out_ProjectStatus]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the  value of  the project manager " DisplayName="Get Project Manager" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_16">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="eb7b80d7-c42c-4e29-9be9-99dfa2675ba5" InformativeScreenshot="c748e66a0d831cd498ad2997d7ad1e2c" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-select-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='5' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_ProjectManager]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_93" Text="[out_ProjectManager]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the value of the delivery manager" DisplayName="Get Delivery Manager" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_17">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="272a0254-fa67-4924-9469-c2b98196c8e2" InformativeScreenshot="d378c43274ce94102d1def3bdd647e61" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-select-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='5' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_DeliveryManager]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_94" Text="[out_DeliveryManager]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the value of the account manager" DisplayName="Get Account Manager" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_18">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="d3675429-fa6f-4aa5-ad08-6492cf2e3ce3" InformativeScreenshot="8d1b62d84398f6827afd740b08ceb4bb" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-select-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='6' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_AccountManager]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_95" Text="[out_AccountManager]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the sales person" DisplayName="Get Sales Person" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_19">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="cce90217-8496-4284-a7e0-125e5b2d2ce1" InformativeScreenshot="a8d7106427148c20fb1d5d55cb7f824c" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-select-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='7' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_SalesPerson]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_96" Text="[out_SalesPerson]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the domain of the project" DisplayName="Get Project Domain" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_21">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="62f9ca60-91e7-429b-a299-62dfc3d40ef1" InformativeScreenshot="d0c61e6bf0e34b7358f379f3e35d9b33" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-select-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='8' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_ProjectDomain]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_97" Text="[out_ProjectDomain]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the type of the project" DisplayName="Get Project Type" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_22">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="56a7db28-abd3-4a89-9ff8-67604a23b83a" InformativeScreenshot="4ffca4ea786503099562014a2747fcd5" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-select-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='9' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_ProjectType]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_98" Text="[out_ProjectType]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the region of the project" DisplayName="Get Region" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_23">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="51c71d39-e602-497b-909b-1a49423fd9f6" InformativeScreenshot="da72548d15e4b57191996d93ef97bf3a" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-select-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='10' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_Region]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_99" Text="[out_Region]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the currency" DisplayName="Get Currency" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_24">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="0354f883-7f41-49ce-aef0-a30bbc9bf61e" InformativeScreenshot="6b31af32613ea2d189d6047f047c4a26" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-select-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='11' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_Currency]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_100" Text="[out_Currency]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the Group2 of the project" DisplayName="Get Group 2" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_25">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="b8e6a229-b6a9-462f-a709-9512f65b2a89" InformativeScreenshot="fa16dec58b81d5e73dcc443fde02c8b2" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-select-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='12' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_Group2]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,117" sap2010:WorkflowViewState.IdRef="MessageBox_101" Text="[out_Group2]" />
+                    <ui:GetValue ContinueOnError="{x:Null}" sap2010:Annotation.AnnotationText="Extract the Group3 of the project" DisplayName="Get Group 3" sap:VirtualizedContainerService.HintSize="532,170" sap2010:WorkflowViewState.IdRef="GetValue_26">
+                      <ui:GetValue.Target>
+                        <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="876224f1-10e2-41b9-b8de-c474c9638f17" InformativeScreenshot="62775ec200a5b07303ea407cfa949264" Selector="&lt;webctrl aria-role='combobox' css-selector='body&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;mat-dialog-container&amp;gt;div&amp;gt;div&amp;gt;app-add-edit-project&amp;gt;form&amp;gt;mat-dialog-content&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;dx-select-box&amp;gt;div&amp;gt;div&amp;gt;div&amp;gt;input' idx='13' parentid='mat-mdc-dialog-0' tabindex='0' tag='INPUT' type='text' /&gt;">
+                          <ui:Target.TimeoutMS>
+                            <InArgument x:TypeArguments="x:Int32" />
+                          </ui:Target.TimeoutMS>
+                          <ui:Target.WaitForReady>
+                            <InArgument x:TypeArguments="ui:WaitForReady" />
+                          </ui:Target.WaitForReady>
+                        </ui:Target>
+                      </ui:GetValue.Target>
+                      <ui:GetValue.Value>
+                        <OutArgument x:TypeArguments="x:String">[out_Group3]</OutArgument>
+                      </ui:GetValue.Value>
+                      <sap:WorkflowViewStateService.ViewState>
+                        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                          <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                        </scg:Dictionary>
+                      </sap:WorkflowViewStateService.ViewState>
+                    </ui:GetValue>
+                    <ui:MessageBox Caption="{x:Null}" ChosenButton="{x:Null}" AutoCloseAfter="00:00:00" DisplayName="Message Box" sap:VirtualizedContainerService.HintSize="532,108" sap2010:WorkflowViewState.IdRef="MessageBox_102" Text="[out_Group3]" />
+                  </Sequence>
+                </Sequence>
+              </ActivityAction>
+            </ui:BrowserScope.Body>
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+                <x:Boolean x:Key="IsPinned">False</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </ui:BrowserScope>
+        </FlowStep>
+      </FlowDecision.True>
+      <FlowDecision.False>
+        <FlowStep x:Name="__ReferenceID1">
+          <sap:WorkflowViewStateService.ViewState>
+            <scg:Dictionary x:TypeArguments="x:String, x:Object">
+              <av:Point x:Key="ShapeLocation">115,345</av:Point>
+              <av:Size x:Key="ShapeSize">110,70</av:Size>
+            </scg:Dictionary>
+          </sap:WorkflowViewStateService.ViewState>
+          <Throw DisplayName="Throw Exception" Exception="[New systemException (&quot;Project not found&quot;)]" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="Throw_3">
+            <sap:WorkflowViewStateService.ViewState>
+              <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+              </scg:Dictionary>
+            </sap:WorkflowViewStateService.ViewState>
+          </Throw>
+        </FlowStep>
+      </FlowDecision.False>
+    </FlowDecision>
+    <FlowStep x:Name="__ReferenceID3">
+      <sap:WorkflowViewStateService.ViewState>
+        <scg:Dictionary x:TypeArguments="x:String, x:Object">
+          <av:Point x:Key="ShapeLocation">405,125</av:Point>
+          <av:Size x:Key="ShapeSize">110,70</av:Size>
+          <av:PointCollection x:Key="ConnectorLocation">460,195 460,225 459.5,225 459.5,310</av:PointCollection>
+        </scg:Dictionary>
+      </sap:WorkflowViewStateService.ViewState>
+      <uix:NApplicationCard sap2010:Annotation.AnnotationText="Open the RMT application to search for the product code&#xA;" AttachMode="SingleWindow" DisplayName="Open the RMT Application" sap:VirtualizedContainerService.HintSize="110,70" sap2010:WorkflowViewState.IdRef="NApplicationCard_3" InteractionMode="Simulate" OpenMode="Never" OutUiElement="[outputElement]" ScopeGuid="6542a149-2bbe-4ef4-9283-4186f1fcdd67" Version="V2">
+        <uix:NApplicationCard.Body>
+          <ActivityAction x:TypeArguments="x:Object">
+            <ActivityAction.Argument>
+              <DelegateInArgument x:TypeArguments="x:Object" Name="WSSessionData" />
+            </ActivityAction.Argument>
+            <Sequence DisplayName="Do Search Project Code" sap:VirtualizedContainerService.HintSize="416,1171" sap2010:WorkflowViewState.IdRef="Sequence_9">
+              <sap:WorkflowViewStateService.ViewState>
+                <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                  <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+                </scg:Dictionary>
+              </sap:WorkflowViewStateService.ViewState>
+              <uix:NTypeInto ActivateBefore="True" sap2010:Annotation.AnnotationText="Search the product code from the queue to check if it exists in RMT application&#xA;" ClickBeforeMode="None" DelayAfter="4" DisplayName="Type Into 'INPUT'" EmptyFieldMode="SingleLine" sap:VirtualizedContainerService.HintSize="354,343" sap2010:WorkflowViewState.IdRef="NTypeInto_3" InteractionMode="Simulate" ScopeIdentifier="6542a149-2bbe-4ef4-9283-4186f1fcdd67" Text="[in_ProjectCodeItem.SpecificContent(&quot;ProjectCode&quot;).ToString]" Version="V3">
+                <uix:NTypeInto.Target>
+                  <uix:TargetAnchorable BrowserURL="https://rmtool-uat.experionglobal.dev/app/projects" CVScreenId="a52e7246-cc40-4c9a-b76e-9368c460ad71" CvTextArea="190, 176, 212, 14" CvTextArgument="Project Name, Code, and Managers .." CvType="Text" DesignTimeRectangle="155, 161, 296, 40" DesignTimeScaleFactor="1" ElementType="InputBox" FullSelectorArgument="&lt;webctrl tag='INPUT' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='INPUT' type='text' class='mat-mdc-tooltip-trigger form-control ng-untouched ng-pristine ng-valid' placeholder='Project Name, Code, and Managers ..' aaname='' /&gt;" Guid="c87c67ed-c640-4fb9-9e84-ebf6d05cb385" InformativeScreenshot="0bf5295e35923400eee35124541db6c3.png" IsResponsive="True" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rmt' /&gt;" SearchSteps="FuzzySelector, CV" Version="V3" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target CVScreenId="a52e7246-cc40-4c9a-b76e-9368c460ad71" CvTextArea="154, 100, 83, 24" CvTextArgument="Projects" CvType="Text" DesignTimeRectangle="155, 100, 81, 20" ElementType="Text" FullSelectorArgument="&lt;webctrl tag='H2' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='H2' type='' class='app-l-header__title' aaname='Projects' check:innerText='Projects' /&gt;" Guid="7edf55c8-24eb-42de-8cb7-ad7949094257" SearchSteps="FuzzySelector, CV" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NTypeInto.Target>
+                <uix:NTypeInto.VerifyOptions>
+                  <uix:VerifyExecutionTypeIntoOptions DisplayName="{x:Null}" Mode="Appears">
+                    <uix:VerifyExecutionTypeIntoOptions.Retry>
+                      <InArgument x:TypeArguments="x:Boolean" />
+                    </uix:VerifyExecutionTypeIntoOptions.Retry>
+                    <uix:VerifyExecutionTypeIntoOptions.Timeout>
+                      <InArgument x:TypeArguments="x:Double" />
+                    </uix:VerifyExecutionTypeIntoOptions.Timeout>
+                  </uix:VerifyExecutionTypeIntoOptions>
+                </uix:NTypeInto.VerifyOptions>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NTypeInto>
+              <uix:NClick ActivateBefore="True" sap2010:Annotation.AnnotationText="To select the project" ClickType="Double" DisplayName="Click 'ABCis -'" sap:VirtualizedContainerService.HintSize="354,220" sap2010:WorkflowViewState.IdRef="NClick_11" InteractionMode="DebuggerApi" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="6542a149-2bbe-4ef4-9283-4186f1fcdd67" Version="V3">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="https://rmtool-uat.experionglobal.dev/app/projects" CVScreenId="1af2a231-f3ee-4251-b073-0bfc637c32c3" CvTextArea="210, 276, 201, 15" CvTextArgument="ABCis - Support &amp; Maint..." CvType="Text" DesignTimeRectangle="155, 261, 296, 46" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;webctrl id='mat-expansion-panel-header-243' tag='MAT-EXPANSION-PANEL-HEADER' /&gt;" FuzzyAccuracy="0.57" FuzzySelectorArgument="&lt;webctrl id='mat-expansion-panel-header-243' tag='MAT-EXPANSION-PANEL-HEADER' type='' class='mat-expansion-panel-header mat-focus-indicator ng-tns-c3-492 ng-tns-c2-491 mat-expansion-toggle-indicator-after ng-star-inserted' aaname='' /&gt;" Guid="6b58245f-30ce-4039-ad2a-ccf9829f5809" ImageBase64="" InformativeScreenshot="fa64bdaa7b1a0d097791a380146ffec8.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rmt' /&gt;" SearchSteps="FuzzySelector, CV" Version="V3" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target CVScreenId="1af2a231-f3ee-4251-b073-0bfc637c32c3" CvTextArea="328, 221, 83, 12" CvTextArgument="Detailed View" CvType="Text" DesignTimeRectangle="329, 219, 90, 17" ElementType="Text" FullSelectorArgument="&lt;webctrl tag='LABEL' /&gt;" FuzzySelectorArgument="&lt;webctrl tag='LABEL' type='' class='' aaname=' Detailed View ' check:innerText='Detailed View' /&gt;" Guid="e2c1e75b-9e0c-4e0b-80c8-74e92d851d21" SearchSteps="FuzzySelector, CV" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <uix:NClick ActivateBefore="True" sap2010:Annotation.AnnotationText="To expand the detailed information about the project " ClickType="Single" DisplayName="Click 'Active'" sap:VirtualizedContainerService.HintSize="354,220" sap2010:WorkflowViewState.IdRef="NClick_12" KeyModifiers="None" MouseButton="Left" ScopeIdentifier="6542a149-2bbe-4ef4-9283-4186f1fcdd67" Version="V3">
+                <uix:NClick.Target>
+                  <uix:TargetAnchorable BrowserURL="https://rmtool-uat.experionglobal.dev/app/projects" CVScreenId="1ca62c32-281c-4ad3-8979-a2099ca56e3b" CvElementArea="874, 219, 27, 27" CvType="ArrowButton" DesignTimeRectangle="877, 221, 22, 22" DesignTimeScaleFactor="1" FullSelectorArgument="&lt;webctrl css-selector='body&amp;gt;app-root&amp;gt;div&amp;gt;app-home&amp;gt;section&amp;gt;section&amp;gt;app-project-listing&amp;gt;div&amp;gt;div&amp;gt;app-project-details&amp;gt;div&amp;gt;mat-accordion&amp;gt;mat-expansion-panel&amp;gt;mat-expansion-panel-header&amp;gt;span&amp;gt;div&amp;gt;button&amp;gt;span' idx='3' isleaf='1' parentid='mat-expansion-panel-header-473' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl type='' class='mat-ripple mat-mdc-button-ripple' isleaf='1' parentid='mat-expansion-panel-header-473' tag='SPAN' aaname='' /&gt;" Guid="bc50cd70-5b35-4c81-8cc6-fe09b0f4c3a9" InformativeScreenshot="9f95f6d1498b9cc59d5614afb4feee07.png" ScopeSelectorArgument="&lt;html app='msedge.exe' title='Rmt' /&gt;" SearchSteps="FuzzySelector, CV" Version="V3" Visibility="Interactive">
+                    <uix:TargetAnchorable.Anchors>
+                      <scg:List x:TypeArguments="uix:ITarget" Capacity="1">
+                        <uix:Target CVScreenId="1ca62c32-281c-4ad3-8979-a2099ca56e3b" CvTextArea="816, 225, 39, 12" CvTextArgument="Active" CvType="Text" DesignTimeRectangle="812, 223, 48, 18" ElementType="Text" FullSelectorArgument="&lt;webctrl aaname=' Active ' parentid='mat-expansion-panel-header-473' tag='SPAN' /&gt;" FuzzySelectorArgument="&lt;webctrl aaname=' Active ' parentid='mat-expansion-panel-header-473' tag='SPAN' type='' class='app-c-badge app-c-badge--green' check:innerText='Active' /&gt;" Guid="a62126f8-0ad9-4ccf-8d7b-aeb9b5575527" SearchSteps="FuzzySelector, CV" />
+                      </scg:List>
+                    </uix:TargetAnchorable.Anchors>
+                  </uix:TargetAnchorable>
+                </uix:NClick.Target>
+                <sap:WorkflowViewStateService.ViewState>
+                  <scg:Dictionary x:TypeArguments="x:String, x:Object">
+                    <x:Boolean x:Key="IsAnnotationDocked">True</x:Boolean>
+                  </scg:Dictionary>
+                </sap:WorkflowViewStateService.ViewState>
+              </uix:NClick>
+              <ui:GetValue ContinueOnError="{x:Null}" DisplayName="Get Text 'LABEL'" sap:VirtualizedContainerService.HintSize="354,139" sap2010:WorkflowViewState.IdRef="GetValue_4">
+                <ui:GetValue.Target>
+                  <ui:Target ClippingRegion="{x:Null}" Element="{x:Null}" Id="f9c92e37-bb79-41f8-a7af-9ad4555b8846" InformativeScreenshot="f1f824391b22779c28dda25092677dcc" Selector="&lt;webctrl class='form-value' tag='LABEL' parentclass='form-group' idx='1' /&gt;">
+                    <ui:Target.TimeoutMS>
+                      <InArgument x:TypeArguments="x:Int32" />
+                    </ui:Target.TimeoutMS>
+                    <ui:Target.WaitForReady>
+                      <InArgument x:TypeArguments="ui:WaitForReady" />
+                    </ui:Target.WaitForReady>
+                  </ui:Target>
+                </ui:GetValue.Target>
+                <ui:GetValue.Value>
+                  <OutArgument x:TypeArguments="x:String">[FoundProjectCode]</OutArgument>
+                </ui:GetValue.Value>
+              </ui:GetValue>
+              <ui:LogMessage DisplayName="Dsiplay Project Code" sap:VirtualizedContainerService.HintSize="354,164" sap2010:WorkflowViewState.IdRef="LogMessage_1" Level="Info" Message="[FoundProjectCode]" />
+            </Sequence>
+          </ActivityAction>
+        </uix:NApplicationCard.Body>
+        <uix:NApplicationCard.TargetApp>
+          <uix:TargetApp Area="-8, -8, 1382, 744" BrowserType="Edge" IconBase64="iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGlSURBVDhPpZPLSkJRGIUd2RNkx1sZ2QW6221SUhGURhOhgWVlVGA0Kpp1g8yuatAogooKUSIKH8FexabVAzhY/WtzjkhZUG34OJv/X2uds/fZ22QMm7WaVAg+ISO8CAUdzlljjxrdJcOqOQyzJpwJbwK+4V2ghlrlLTVnhXKmclCrQmg2C0wtJ/wJeswM8AuvLFo1p8KY82lg9Eo09PgYkKag1lUPT2cvWls6YbfVwF3XBIfdpcSuGjcaG5ql36NobelQGvFlGJCvstgxE5rD1eU1EolTzIcXsR87RDAYglblwMHBEdZW13F8FMfTUxZLixE4HbUMyDOgYKm0IRJZwcbGNsLhBcTjSZyfXyCVSmN6aha53DNC03PweodVT387KRQDliUgk7nHw8OjEu9F97G1uYPbmztEd2MqaKB/CPGTpGEuBuT5mWOj4xgVhgZHEAhMYio4gy5PHzrau+H3Tah6e5tHLbUkQC2BJ6xY1Hf4845/6eukGcDjqX7jL6HHz4B/HyTy96Nst6kAI4SpvDDlTIQXjRpltmolt5IF4ZfX2WT6AD1aRQDCPAJhAAAAAElFTkSuQmCC" InformativeScreenshot="33b43b58081af156c7768e5892b0c4f2.jpg" Selector="&lt;html app='msedge.exe' title='Rmt' /&gt;" Title="Rmt" Url="https://rmtool-uat.experionglobal.dev/app/projects" />
+        </uix:NApplicationCard.TargetApp>
+        <sap:WorkflowViewStateService.ViewState>
+          <scg:Dictionary x:TypeArguments="x:String, x:Object">
+            <x:Boolean x:Key="IsExpanded">True</x:Boolean>
+            <x:Boolean x:Key="IsAnnotationDocked">False</x:Boolean>
+          </scg:Dictionary>
+        </sap:WorkflowViewStateService.ViewState>
+      </uix:NApplicationCard>
+      <FlowStep.Next>
+        <x:Reference>__ReferenceID0</x:Reference>
+      </FlowStep.Next>
+    </FlowStep>
+    <x:Reference>__ReferenceID1</x:Reference>
+    <x:Reference>__ReferenceID2</x:Reference>
+  </Flowchart>
+</Activity>
